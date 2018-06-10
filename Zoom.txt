@@ -1,0 +1,43 @@
+zoonIn(id:string) {
+    let folder = ".folder"+id;
+    let folid = "#folder"+id;
+    console.log(this.currentZoom);
+    $(folder).animate({ 'zoom': this.currentZoom += .1 }, 'fast');
+    console.log(this.currentZoom);
+  }
+  zoonOut(id:string) {
+    let folder = ".folder"+id;
+    let folid = "#folder"+id;
+    this.currentZoom =  $(folid).css("zoom");
+    console.log(this.currentZoom);
+    $(folder).animate({ 'zoom': this.currentZoom -= .1 }, 'fast');
+    console.log(this.currentZoom);
+  }
+  
+  refresh(id:string) {
+    let folder = ".folder"+id;
+    console.log(this.currentZoom);
+    $(folder).animate({ 'zoom': 1 }, 'fast');
+    this.currentZoom = 1;
+    console.log(this.currentZoom);
+  }
+
+
+
+
+<div id="folder{{i}}" class="folder{{i}}">
+                    <tree [tree]="hdfsPond" [settings]="settings" (nodeCreated)="onNodeCreated($event)" (nodeSelected)="onNodeSelected($event)"
+                        (nodeExpanded)="onNodeExpanded($event)" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)"></tree>
+                </div>
+                <div class="tool-controler">
+                    <span  title="ZoomIn" (click)="zoonIn(i)">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </span>
+                    <span title="ZoomOut" (click)="zoonOut(i)">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </span>
+                    <span  title="Refresh" (click)="refresh(i)">
+                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                    </span>
+                </div>
+
